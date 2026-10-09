@@ -32,6 +32,8 @@ LiterMD 解决一个很具体的问题：**Markdown 预览工具大多只有「�
 
 一句话：**左边写，右边看，存回本地。**
 
+> 📖 **只想用，不打算看代码？** 直接看 **[用户说明.md](用户说明.md)** —— 界面逐块讲解、上手步骤、FAQ。
+
 ---
 
 ## 功能
@@ -68,9 +70,45 @@ LiterMD 解决一个很具体的问题：**Markdown 预览工具大多只有「�
 
 ## 下载使用
 
-### 直接构建（推荐）
+### 方式一：直接安装（推荐，无需开发环境）
 
-在 macOS 上克隆源码并构建：
+从仓库的 **Releases** 页面下载 `LiterMD_0.1.0_aarch64.zip`，解压后得到 `LiterMD.app`。
+
+**三步装好：**
+
+1. **解压** zip，得到 `LiterMD.app`
+2. **拖进应用程序**：把 `LiterMD.app` 拖到 `Applications`（应用程序）目录下
+3. **解除隔离标记**：在终端执行
+
+   ```bash
+   xattr -cr /Applications/LiterMD.app
+   ```
+
+完成。**之后直接从启动台 / 访达打开 LiterMD 即可。**
+
+> **第 3 步是必须的。** 从浏览器下载的 zip 会给 app 打上「隔离属性」（quarantine flag），
+> macOS Gatekeeper 会因此拦截直接双击打开，提示「无法验证开发者，因为来自身份不明的开发者」。
+> `xattr -cr` 就是清掉这个标记。
+>
+> 不想用命令行也行：**右键点击 `LiterMD.app` → 打开 → 确认「打开」**，效果一样，
+> 但以后每次升级都要重新点一次。
+
+**完整命令版：**
+
+```bash
+# 解压
+unzip LiterMD_0.1.0_aarch64.zip
+# 移动到 Applications
+mv LiterMD.app /Applications/
+# 清除隔离标记
+xattr -cr /Applications/LiterMD.app
+# 打开
+open /Applications/LiterMD.app
+```
+
+### 方式二：从源码构建
+
+需要 macOS + Node.js 20+ + Rust，详见[「从源码开发」](#从源码开发)。
 
 ```bash
 git clone <repo-url> litermd && cd litermd
@@ -82,28 +120,18 @@ npm run tauri:build
 
 | 文件 | 说明 |
 |------|------|
-| `macos/LiterMD.app` | macOS 应用，可直接拖入 `Applications` |
 | `dmg/LiterMD_0.1.0_aarch64.dmg` | 磁盘镜像，Apple Silicon |
+| `macos/LiterMD.app` | 应用本体（dmg 里的内容就是这个） |
 
 首次构建需要 10–20 分钟（Rust 依赖较多），之后增量编译很快。
-
-> 当前产物**未签名、未公证**。首次打开若被 Gatekeeper 拦截（「无法验证开发者」），右键点击 dmg / app 选择「打开」，或执行：
-> ```bash
-> xattr -cr /Applications/LiterMD.app
-> ```
-
-### 只构建单一格式
 
 ```bash
 npm run dmg    # 只出 .dmg
 npm run app    # 只出 .app
+npm run clean  # 清理构建产物
 ```
 
-### 清理构建产物
-
-```bash
-npm run clean
-```
+> 本地构建出来的 app **同样未签名**，装到别的 Mac 上也要走上面那步 `xattr -cr`。
 
 ### 系统要求
 
@@ -127,6 +155,9 @@ npm run clean
 ---
 
 ## 使用说明
+
+> 只想知道「怎么用」和「界面每个区域是干嘛的」，看 **[用户说明.md](用户说明.md)**。
+> 本文以下内容是速览版，完整版（含界面详解、功能逐条说明、FAQ）在那份文档里。
 
 ### 上手三步
 
