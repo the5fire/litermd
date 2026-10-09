@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MD Reader</title>
+    <link rel="stylesheet" href="/src/styles.css" />
+    <script type="module" src="/src/main.ts" defer></script>
+  </head>
+  <body>
+    <div id="app">
+      <header class="toolbar">
+        <div class="toolbar-left">
+          <button type="button" id="btn-open" title="打开 (Ctrl/⌘+O)">打开</button>
+          <button type="button" id="btn-save" title="保存 (Ctrl/⌘+S)">保存</button>
+          <button type="button" id="btn-save-as" title="另存为 (Ctrl/⌘+Shift+S)">另存为</button>
+          <button type="button" id="btn-new" title="新建">新建</button>
+        </div>
+        <div class="toolbar-center">
+          <span id="file-label" class="file-label">未命名.md</span>
+          <span id="dirty-badge" class="dirty-badge" hidden>●</span>
+        </div>
+        <div class="toolbar-right">
+          <label class="toggle">
+            <input type="checkbox" id="toggle-toc" checked />
+            大纲
+          </label>
+          <span id="env-badge" class="env-badge" title="运行环境"></span>
+        </div>
+      </header>
+
+      <div class="workspace">
+        <aside id="toc-panel" class="toc-panel" aria-label="文档大纲">
+          <div class="toc-title">大纲</div>
+          <nav id="toc" class="toc"></nav>
+        </aside>
+
+        <section class="editor-pane" aria-label="编辑器">
+          <textarea
+            id="editor"
+            spellcheck="false"
+            placeholder="在此编写 Markdown…"
+            aria-label="Markdown 编辑区"
+          ></textarea>
+        </section>
+
+        <section class="preview-pane" aria-label="预览">
+          <article id="preview" class="preview markdown-body"></article>
+        </section>
+      </div>
+
+      <footer class="statusbar">
+        <span id="status-msg">就绪</span>
+        <span id="word-count"></span>
+      </footer>
+    </div>
+
+    <!-- 浏览器模式打开文件用 -->
+    <input type="file" id="file-input" accept=".md,.markdown,.txt,text/markdown" hidden />
+  </body>
+</html>
