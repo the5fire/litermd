@@ -1,4 +1,4 @@
-# MD Reader 欢迎页
+# LiterMD 欢迎页
 
 这是可用 `npm run dev` 在浏览器里验证的示例文档。
 
@@ -14,7 +14,7 @@
 
 ```rust
 fn main() {
-    println!("Hello from MD Reader");
+    println!("Hello from LiterMD");
 }
 ```
 

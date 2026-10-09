@@ -1,5 +1,5 @@
 {
-  "name": "md-reader",
+  "name": "litermd",
   "private": true,
   "version": "0.1.0",
   "type": "module",
@@ -9,7 +9,10 @@
     "preview": "vite preview",
     "tauri": "tauri",
     "tauri:dev": "tauri dev",
-    "tauri:build": "tauri build"
+    "tauri:build": "tauri build",
+    "dmg": "tauri build --bundles dmg",
+    "app": "tauri build --bundles app",
+    "clean": "rm -rf dist src-tauri/target/release src-tauri/target/debug/bundle"
   },
   "dependencies": {
     "@tauri-apps/api": "^2",
@@ -26,5 +29,6 @@
     "typescript": "~6.0.3",
     "vite": "^8.0.16"
   },
-  "description": "Tauri 2 Markdown editor with live preview (macOS-first)"
+  "description": "Tauri 2 Markdown editor with live preview (macOS-first)",
+  "license": "MIT"
 }

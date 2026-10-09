@@ -10,7 +10,7 @@ import {
 import "highlight.js/styles/github-dark.css";
 
 const DEFAULT_DOC = [
-  "# MD Reader",
+  "# LiterMD",
   "",
   "边写边预览的 Markdown 桌面编辑器（第一期脚手架）。",
   "",
@@ -81,7 +81,7 @@ function updateChrome() {
   const mark = state.dirty ? " •" : "";
   fileLabel().textContent = state.name;
   dirtyBadge().hidden = !state.dirty;
-  void setWindowTitle(`${state.name}${mark} — MD Reader`);
+  void setWindowTitle(`${state.name}${mark} — LiterMD`);
   const text = editor().value;
   const chars = text.length;
   const lines = text ? text.split("\n").length : 0;
